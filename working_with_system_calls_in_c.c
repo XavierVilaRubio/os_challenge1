@@ -6,7 +6,15 @@
 
 int main(int argc, char *argv[]){
 
+//    struct timeval start, end{
+//        time_t      tv_sec;       Number of whole seconds of elapsed time
+//        long int    tv_usec;      Number of microseconds of rest of elapsed time minus tv_sec. Always less than one million
+//    };
     struct timeval start, end;
+
+    long nanosec(struct timeval t){
+        return((t.tv_sec*1000000+t.tv_usec)*1000);
+    }
 
     int dummy_function(){
         return 3;
@@ -21,7 +29,8 @@ int main(int argc, char *argv[]){
         }
         gettimeofday (&end, NULL);
 
-        printf("Time in microseconds: %d microseconds\n", end.tv_usec - start.tv_usec);
+        float totalTime=(nanosec(end)-nanosec(start));
+        printf("Time in microseconds: %f microseconds\n", totalTime);
     }
 
     void procedure_call(){
@@ -33,7 +42,8 @@ int main(int argc, char *argv[]){
         }
         gettimeofday (&end, NULL);
 
-        printf("Time in microseconds: %d microseconds\n", end.tv_usec - start.tv_usec);
+        float totalTime=(nanosec(end)-nanosec(start));
+        printf("Time in microseconds: %f microseconds\n", totalTime);
     }
 
     if(argc == 2){
@@ -44,7 +54,7 @@ int main(int argc, char *argv[]){
         }
     }else{
         system_call();
-        sleep(1);
+//        sleep(1);
         procedure_call();
     }
 
