@@ -42,3 +42,20 @@ This folder contains all the files needed for the GUI Grub menu.
 
 * config* \
 This file contains the kernel configuration.
+
+## 3. Analysing kernel and system calls
+
+### Question 6
+#### Explain what this code is supposed to do.
+```bash
+SYSCALL_DEFINE1(my_syscall , char *, msg)
+{
+    printk(KERN_INFO "my_syscall:\"%s\"\n", msg);
+    return 0;
+}
+```
+This code creates a system call that could be implemented in a program written in *C* and it's supposed to print the message you indicated in the parameter *msg*, in this case, a char string, through the kernel.
+
+### Question 7
+#### Check or think if the execution of this code could be dangerous? If answer is yes, correct it.
+This code isn't dangerous but it could be if it didn't return any value.
