@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]){
 
-//    struct timeval start, end{
+//    struct timeval {
 //        time_t      tv_sec;       Number of whole seconds of elapsed time
 //        long int    tv_usec;      Number of microseconds of rest of elapsed time minus tv_sec. Always less than one million
 //    };
@@ -20,8 +20,10 @@ int main(int argc, char *argv[]){
         return 3;
     }
 
+    float avgTimeSysCall, avgTimeProcCall;
+
     void system_call(){
-        printf("SYSTEM CALL\n");
+        printf("\nSYSTEM CALL\n");
 
         gettimeofday (&start, NULL);
         for(int i=0; i<TIMES; i++){
@@ -30,11 +32,14 @@ int main(int argc, char *argv[]){
         gettimeofday (&end, NULL);
 
         float totalTime=(nanosec(end)-nanosec(start));
-        printf("Time in microseconds: %f microseconds\n", totalTime);
+        printf("Total time in microseconds: %f microseconds\n", totalTime);
+
+        avgTimeSysCall=(totalTime/(TIMES)*1.0);
+        printf("Average time in microseconds: %f microseconds\n", avgTimeSysCall);
     }
 
     void procedure_call(){
-        printf("PROCEDURE CALL\n");
+        printf("\nPROCEDURE CALL\n");
 
         gettimeofday (&start, NULL);
         for(int i=0; i<TIMES; i++){
@@ -43,7 +48,10 @@ int main(int argc, char *argv[]){
         gettimeofday (&end, NULL);
 
         float totalTime=(nanosec(end)-nanosec(start));
-        printf("Time in microseconds: %f microseconds\n", totalTime);
+        printf("Total time in microseconds: %f microseconds\n", totalTime);
+
+        avgTimeProcCall=(totalTime/(TIMES)*1.0);
+        printf("Average time in microseconds: %f microseconds\n", avgTimeProcCall);
     }
 
     if(argc == 2){
@@ -56,6 +64,11 @@ int main(int argc, char *argv[]){
         system_call();
 //        sleep(1);
         procedure_call();
+        if(avgTimeSysCall > avgTimeProcCall){
+            printf("\nThe difference is: %f microseconds\n", avgTimeSysCall - avgTimeProcCall);
+        }else{
+            printf("\nThe difference is: %f microseconds\n", avgTimeProcCall - avgTimeSysCall);
+        }
     }
 
     return 0;
