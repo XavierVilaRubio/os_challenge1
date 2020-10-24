@@ -50,6 +50,8 @@ This folder contains all the files needed for the GUI Grub menu.
 * config* \
 This file contains the kernel configuration.
 
+---
+
 ## 3. Analysing kernel and system calls
 
 ### Question 6
@@ -66,3 +68,23 @@ This code creates a system call that could be implemented in a program written i
 ### Question 7
 #### Check or think if the execution of this code could be dangerous? If answer is yes, correct it.
 The code it's dangerous because you can write some instructions to hack the computer on a memory direction and pass it through the *msg* variable.
+
+---
+
+## 5. Creating *GetInfoProc* System Call
+
+#### We are going to create a system call that allows us to obtain information about a specific process such as the elapsed_time, start_time, sys_time and user_time. But feel free to return and store other information if you want.
+
+You can see our propouse (proposta) in *5_creating_getinfoproc_system_call.diff* file.
+We tried to build the function with an structure, but due to our missing knowledge it was impossible. The last error we got was when compiling *5_creating_getinfoproc_system_call.c* and said "dereferencing pointer to incomplete type".
+
+---
+
+## 6. Hacking a system call
+
+#### Hack your kernel to print “:) Your file ``filename.txt`` is being opened!!!” when the user opens a file.
+
+To do this first we followed the pista and went into *fs/open.c*. When we realized this file was el encarregat de la funció *open()* we searched for the correct function, it was at line 1001, *do_sys_open()*.
+So we added a *printk(":) Your file %s is being opened!!!", tmp->name);* using the tmp structure of filename type (joquese cristian no se com explicar-me millor, no entenc les estructures ni en catalá) (perdó si sono agresiu, i'm just tired :'( ) 
+The only problem is that the field "name" contains the full path, but we have been incapaços de get only the file name, srry per ser uns incompetents de merda, jo també m'esperava més de mi mateix Jordi, 0 worries.
+Our proposta again is in the *6_hacking_a_system_call.diff* file.
