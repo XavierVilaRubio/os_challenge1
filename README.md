@@ -76,7 +76,7 @@ The code it's dangerous because you can write some instructions to hack the comp
 #### We are going to create a system call that allows us to obtain information about a specific process such as the elapsed_time, start_time, sys_time and user_time. But feel free to return and store other information if you want.
 
 You can see our propouse (proposta) in *5_creating_getinfoproc_system_call.diff* file.
-We tried to build the function with an structure, but due to our missing knowledge it was impossible. The last error we got was when compiling *5_creating_getinfoproc_system_call.c* and said "dereferencing pointer to incomplete type".
+The only problem we hem tingut was that we can't use the sys/time.h library on kernel/sys.c and we can't use the *gettimeofday()* function to get the *elapsed_time*.
 
 ---
 
