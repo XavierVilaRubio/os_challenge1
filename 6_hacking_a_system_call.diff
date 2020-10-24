@@ -1,0 +1,11 @@
+diff -urN linux-4.7.1/fs/open.c linux-4.7.1_challenge1.6/fs/open.c
+--- linux-4.7.1/fs/open.c	2016-08-16 09:35:15.000000000 +0200
++++ linux-4.7.1_challenge1.6/fs/open.c	2020-10-24 08:41:11.627051841 +0200
+@@ -1013,6 +1013,7 @@
+ 
+ 	fd = get_unused_fd_flags(flags);
+ 	if (fd >= 0) {
++		printk(":) Your file %s is being opened!!!", tmp->name);
+ 		struct file *f = do_filp_open(dfd, tmp, &op);
+ 		if (IS_ERR(f)) {
+ 			put_unused_fd(fd);
