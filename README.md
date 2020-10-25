@@ -85,7 +85,7 @@ The only problem we had was that we couldn't use the sys/time.h library on kerne
 
 #### Hack your kernel to print “:) Your file ``filename.txt`` is being opened!!!” when the user opens a file.
 
-To do this first we followed the clue and went into *fs/open.c*. When we realized this file was the one in charge of the `open()` function we searched for the correct function, it was at the 1001 line, `do_sys_open()`.
-So we added `printk(":) Your file %s is being opened!!!", tmp->name);` using the `tmp` structure of the type `filename`.
+To do this first we followed the clue and went into *fs/open.c*. When we realized this file was the one in charge of the `open()` function we searched for the correct function, it was at the 1029 line, `SYSCALL_DEFINE3(open, const char __user *, filename, int, flags, umode_t, mode)`.
+So we added `printk(":) Your file %s is being opened!!!", filename);` using the `filename` string.
 The only problem is that the field "name" contains the full path, but we have been unable de get only the file name. \
 Our work is in the *6_hacking_a_system_call.diff* file.
