@@ -68,7 +68,8 @@ This code creates a system call that could be implemented in a program written i
 
 ### Question 7
 #### Check or think if the execution of this code could be dangerous? If answer is yes, correct it.
-The code is dangerous because you can write some instructions to hack the computer on a memory direction and pass it through the *msg* variable.
+The code is dangerous because you can write some instructions to hack the computer on a memory direction and pass it through the *msg* variable.\
+So, to correct this, we should change the `char * msg` argument to a `char msg`.
 
 ---
 
