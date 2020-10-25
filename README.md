@@ -12,8 +12,8 @@ The difference usually sits between 0.3 and 0.5 microseconds.
 
 ### Question 3
 #### Design an experiment to test and proof which call is more time expensive. Write a simple test program in C to compare the cost of a simple procedure call to a simple system call (i.e getpid()).
-To do this we created two functions, *system\_call()* and *procedure\_call()*.
-The first one it's just a *getpid()*, and the second one just calls *dummy_function()* which just returns the integer 3.
+To do this we created two functions, `system\_call()` and `procedure\_call()`.
+The first one it's just a `getpid()`, and the second one just calls `dummy_function()` which just returns the integer 3.
 Then we repeated each function a million times and used the `timeval` structure and the `gettimeofday()` function to get the execution time of both calls.\
 All the code is in *working_with_system_calls_in_c.c*
  
@@ -77,7 +77,7 @@ The code is dangerous because you can write some instructions to hack the comput
 #### We are going to create a system call that allows us to obtain information about a specific process such as the elapsed_time, start_time, sys_time and user_time. But feel free to return and store other information if you want.
 
 You can see our exercice in *5_creating_getinfoproc_system_call.diff* file.\
-The only problem we had was that we couldn't use the sys/time.h library on kernel/sys.c and we neither could use the `gettimeofday()` function to get the *elapsed_time*.
+The only problem we had was that we couldn't use the sys/time.h library on kernel/sys.c and we neither could use the `gettimeofday()` function to get the `elapsed_time`.
 
 ---
 
